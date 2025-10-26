@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 Reasons I Love You ❤️</title>
+<style>
+  body { margin:0; padding:0; font-family:'Roboto',sans-serif; background:#ffe6f0; overflow:hidden; }
+  .container { max-width:600px; margin:0 auto; padding:20px; text-align:center; }
+
+  h1 { font-size:36px; color:#ff4081; margin-bottom:20px; text-shadow:0 0 10px #ff80ab,0 0 20px #ff4081; }
+
+  ol { list-style:none; background:#fff; padding:20px; border-radius:20px; box-shadow:0 5px 20px rgba(0,0,0,0.2); }
+  li { font-size:16px; margin-bottom:15px; opacity:0; transform:translateY(30px); }
+
+  /* Breathing heart */
+  .heart { display:inline-block; animation:beat 1s infinite alternate; color:red; font-size:20px; }
+  @keyframes beat { 0%{transform:scale(1);} 100%{transform:scale(1.3);} }
+
+  /* Magic hand */
+  #magicHand {
+    font-size:50px; opacity:0; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+    animation:handCast 1.5s forwards;
+  }
+  @keyframes handCast {
+    0%{opacity:0; transform:translate(-50%,-50%) scale(0);}
+    50%{opacity:1; transform:translate(-50%,-50%) scale(1.2);}
+    100%{opacity:1; transform:translate(-50%,-50%) scale(1);}
+  }
+
+  /* Floating emoji particles */
+  .emoji {
+    position:absolute; font-size:24px; animation:float 5s linear infinite;
+  }
+  @keyframes float {
+    0% {transform:translateY(0);}
+    100% {transform:translateY(-500px);}
+  }
+</style>
+</head>
+<body>
+
+<div id="magicHand">🪄✨</div>
+
+<div class="container">
+  <h1>12 Reasons I Love You ❤️</h1>
+  <ol id="reasonsList">
+    <li>A whole year with you… and somehow it still feels like day one. 💫</li>
+    <li>You’re not just my person, you’re my calm place in a loud world.</li>
+    <li>Sometimes I think about how we started… and I can’t believe how far we’ve come. 💭</li>
+    <li>You made ordinary days feel like home. 🕊️</li>
+    <li>If I could choose again, I’d still find you in every lifetime.</li>
+    <li>One year of laughter, late talks, tiny arguments, and holding on anyway. 💗</li>
+    <li>You turned my “what ifs” into “I’m sure.”</li>
+    <li>The first time I tried to approach you, I already knew I had feelings. 💥</li>
+    <li>Playing that game with you made my heart race. 🎮💞</li>
+    <li>Home stopped being a place when it started looking like you.</li>
+    <li>You’ve seen every side of me and stayed. ❤️</li>
+    <li>One year down, forever to go—but forever doesn’t feel long enough. 💖</li>
+  </ol>
+</div>
+
+<script>
+// Animate reasons one by one after hand cast
+const reasons = document.querySelectorAll('#reasonsList li');
+let delay = 0;
+setTimeout(() => {
+  reasons.forEach((li, index) => {
+    setTimeout(() => {
+      li.style.transition = "all 0.6s ease";
+      li.style.opacity = 1;
+      li.style.transform = "translateY(0)";
+      li.innerHTML = li.innerHTML.replace(/❤️|💖|💗|💥|💫/g, match => `<span class="heart">${match}</span>`);
+    }, delay);
+    delay += 500;
+  });
+}, 1500); // wait for hand animation
+
+// Floating emojis
+const emojis = ['💖','✨','🪄','🤩','❤️','💥'];
+for(let i=0;i<30;i++){
+  let e = document.createElement('div');
+  e.className='emoji';
+  e.style.left=Math.random()*100+'vw';
+  e.style.top=Math.random()*100+'vh';
+  e.style.fontSize=(Math.random()*24+16)+'px';
+  e.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.animationDuration=(Math.random()*3+3)+'s';
+  document.body.appendChild(e);
+}
+</script>
+
+</body>
+</html>
