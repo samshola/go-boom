@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 Reasons I Love You</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #ffe6f0, #ffcccc);
+    overflow-x: hidden;
+    text-align: center;
+    color: #333;
+  }
+
+  .boom {
+    font-size: 5rem;
+    margin-top: 50px;
+    animation: explode 1s ease forwards;
+  }
+
+  @keyframes explode {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.5); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 25px;
+    margin: 20px auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .card.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp 3s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+  }
+
+  .swipe-note {
+    font-size: 1rem;
+    color: #ff3366;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+</style>
+</head>
+<body>
+
+<h1 class="boom">Boom 💥</h1>
+<p class="swipe-note">Swipe up to see the 12 reasons I love you 💖</p>
+
+<div id="cards-container">
+  <div class="card active">1. A whole year with you… and somehow it still feels like day one. How do you make every moment feel brand new? 💫</div>
+  <div class="card">2. You’re not just my person—you’re my calm in a loud world. In your quiet, everything else fades.</div>
+  <div class="card">3. Sometimes I replay how we started… and I can’t believe how far we’ve come. That spark still lights me up. 💭</div>
+  <div class="card">4. You turned ordinary days into home. I never knew love could feel this safe until you wrapped me in it. 🕊️</div>
+  <div class="card">5. If I could choose again, I’d find you in every lifetime, every version of me. You’re the constant I’d always pick.</div>
+  <div class="card">6. One year of laughter, late-night talks, tiny arguments, and holding on tighter anyway. That’s real love, isn’t it? 💗</div>
+  <div class="card">7. You turned my “what ifs” into “I’m sure.” Thank you for being my certainty. 💫</div>
+  <div class="card">8. Playing that game with you made my heart race like nothing else. Your smile that day was a tiny miracle I didn’t know I needed. 🎮💞</div>
+  <div class="card">9. Home stopped being a place the moment it started looking like you. You’re where I unpack my heart.</div>
+  <div class="card">10. You’ve seen every side of me—even the ones I tried to hide—and you stayed. That vulnerability still makes me want to cry a little.</div>
+  <div class="card">11. I love how you make me laugh… but I love even more how you make me feel truly seen. ❤️</div>
+  <div class="card">12. One year down, forever to go—but somehow, forever doesn’t feel long enough with you. Here’s to us, always becoming more. 💖</div>
+</div>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  let current = 0;
+
+  function showNextCard() {
+    if (current < cards.length - 1) {
+      cards[current].classList.remove('active');
+      current++;
+      cards[current].classList.add('active');
+    }
+  }
+
+  // Swipe up support
+  let touchstartY = 0;
+  let touchendY = 0;
+
+  document.addEventListener('touchstart', e => touchstartY = e.changedTouches[0].screenY);
+  document.addEventListener('touchend', e => {
+    touchendY = e.changedTouches[0].screenY;
+    if (touchstartY - touchendY > 50) { // swipe up
+      showNextCard();
+    }
+  });
+
+  // Floating hearts animation
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 90 + 'vw';
+    heart.textContent = '💖';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 3000);
+  }
+
+  setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
