@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motivation Page</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffcccc, #ffe6e6);
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+    color: #333;
+  }
+
+  .bear-container {
+    margin-top: 50px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .bear {
+    font-size: 5rem;
+    transition: all 0.5s ease;
+  }
+
+  .tears {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 10px;
+    height: 20px;
+    background: #00f;
+    border-radius: 50%;
+    animation: drop 1s infinite;
+    display: none;
+  }
+
+  @keyframes drop {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(20px); opacity: 0.7; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .try-button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background: #ff6666;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .try-button:hover {
+    background: #ff1a1a;
+  }
+</style>
+</head>
+<body>
+
+<div class="bear-container">
+  <div class="bear" id="bear">🐨</div>
+  <div class="tears" id="tear1"></div>
+  <div class="tears" id="tear2" style="left: 40%;"></div>
+</div>
+
+<div class="message" id="message">Don't give up! You can try again 💪</div>
+<button class="try-button" id="tryButton">Try Again</button>
+
+<script>
+  // Show tears and message
+  const bear = document.getElementById('bear');
+  const tears = [document.getElementById('tear1'), document.getElementById('tear2')];
+  const message = document.getElementById('message');
+  const button = document.getElementById('tryButton');
+
+  // Display tears
+  tears.forEach(t => t.style.display = 'block');
+
+  // Fade in message
+  setTimeout(() => {
+    message.style.opacity = 1;
+  }, 500);
+
+  // On button click, bear becomes happy
+  button.addEventListener('click', () => {
+    bear.textContent = '🐻'; // Happy bear
+    bear.style.transform = 'scale(1.2) rotate(0deg)';
+    tears.forEach(t => t.style.display = 'none');
+    message.textContent = "Yay! You did it 😁 Keep going!";
+    button.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
